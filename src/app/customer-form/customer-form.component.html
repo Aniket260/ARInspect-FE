@@ -1,0 +1,112 @@
+<div>
+  <div class="card">
+    <div class="card-body">
+      <form class="form" (ngSubmit)="onSubmit()" #f="ngForm">
+        <div *ngIf="addCustomerButton || updateCustomerButton">
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">First Name</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" style="text-transform: capitalize;" autocomplete="off" placeholder="First Name" [(ngModel)]="customer.firstName"
+                name="firstName" #name="ngModel">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Last Name</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="Last Name" maxlength="25"  style="text-transform: capitalize;" autocomplete="off"
+                [(ngModel)]="customer.lastName" name="lastName" #name="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="Email" maxlength="100"
+                [(ngModel)]="customer.emailAddress" name="emailAddress" #name="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Phone</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="Phone Number" maxlength="10"
+                [(ngModel)]="customer.phoneNumber" name="phoneNumber" #name="ngModel">
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!updateCustomerButton">
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Address Line 1</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="Address Line 1" maxlength="100"  style="text-transform: capitalize;" autocomplete="off"
+                [(ngModel)]="address.addressLine1" name="addressLine1" #name="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Address Line 2</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="Address Line 2" maxlength="100"  style="text-transform: capitalize;" autocomplete="off"
+                [(ngModel)]="address.addressLine2" name="addressLine2" #name="ngModel">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">City</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="City" maxlength="50" [(ngModel)]="address.city"  style="text-transform: capitalize;" autocomplete="off"
+                name="city" #name="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">State</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="State" maxlength="50" [(ngModel)]="address.state"  style="text-transform: capitalize;" autocomplete="off"
+                name="state" #name="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Country</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="Country" maxlength="50" [(ngModel)]="address.country"  style="text-transform: capitalize;" autocomplete="off"
+                name="country" #name="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">ZipCode</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" placeholder="ZipCode" maxlength="6" [(ngModel)]="address.zipCode"
+                name="zipCode" #name="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Primary</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="checkbox" [(ngModel)]="address.isPrimary" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+
+
+        <div style="margin: 10px 0 10px 0;"></div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label"></label>
+          <div class="col-lg-9">
+            <input type="reset" class="btn btn-secondary" value="Cancel" (click)="getCustomerList()">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn btn-primary" value="Add Customer" *ngIf='addCustomerButton'>
+            <input type="submit" class="btn btn-primary" value="Update Customer" *ngIf='updateCustomerButton'>
+            <input type="submit" class="btn btn-primary" value="Add Address" *ngIf='addAddress'>
+            <input type="submit" class="btn btn-primary" value="Update Address" *ngIf='updateAddressButton'>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

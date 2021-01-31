@@ -1,0 +1,92 @@
+<div>
+  <header style="background-color: darkcyan;height: 50px;"></header>
+  <div style="margin: 1%;">
+    <form>
+      <div class="row">
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control" id="text" [(ngModel)]="text" name="text" autocomplete="off">
+        </div>
+        <div>
+          <button class="btn btn-primary" (click)="search()">Search</button>
+        </div>
+        <div style="padding-left: 1%;">
+          <button class="btn btn-primary" (click)="addCustomer()">Add Customer</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" (change)="onCheckboxChange($event)" />
+          Details
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <table class="table table-bordered table-sm text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th>S No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obj of customerList | paginate: config;let i = index">
+        <td>{{(config.currentPage-1)*config.itemsPerPage + i+1}}</td>
+        <td>{{obj.firstName}} {{obj.lastName}}</td>
+        <td>{{obj.emailAddress}}</td>
+        <td>{{obj.phoneNumber}}</td>
+        <td>
+          <div>
+            <button class="btn btn-primary" (click)="addAddress(i)">Add Address</button>&nbsp;&nbsp;
+            <button class="btn btn-warning" (click)="editCustomer(i)">Edit</button>&nbsp;&nbsp;
+            <button class="btn btn-danger" (click)="deleteCustomer(i)">Delete</button>
+          </div>
+        </td>
+        <table class="table table-bordered table-sm text-center" *ngIf="details">
+          <thead>
+            <tr class="table-success">
+              <th>Address Line1</th>
+              <th>Address Line2</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Country</th>
+              <th>ZipCode</th>
+              <th>Default</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let add of obj.address;let j= index">
+              <td>{{add.addressLine1}}</td>
+              <td>{{add.addressLine2}}</td>
+              <td>{{add.city}}</td>
+              <td>{{add.state}}</td>
+              <td>{{add.country}}</td>
+              <td>{{add.zipCode}}</td>
+              <td>{{add.isPrimary}}</td>
+              <td>
+                <button class="btn btn-warning" (click)="editAddress(i,j)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteAddress(i,j)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls
+  [maxSize]="maxSize"
+  [directionLinks]="directionLinks"
+  [autoHide]="autoHide"
+  [responsive]="responsive"
+  [previousLabel]="labels.previousLabel"
+  [nextLabel]="labels.nextLabel"
+  [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+  [screenReaderPageLabel]="labels.screenReaderPageLabel"
+  [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+  (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
